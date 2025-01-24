@@ -80,8 +80,11 @@ int main(int argc, char *argv[]) {
     // 패킷 생성
     unsigned char packet[128];
     create_frame(packet, ap_mac, station_mac, is_auth);
-    printf("Packet before sending:\n");
-    print_packet(packet, sizeof(packet));
+
+    //확인
+    // printf("Packet before sending:\n");
+    // print_packet(packet, sizeof(packet));
+
     // 패킷 전송
     printf("Sending %s packets...\n", is_auth ? "Authentication" : "Deauthentication");
     for (int i = 0; i < 100; i++) {  // 100번 전송
@@ -89,7 +92,6 @@ int main(int argc, char *argv[]) {
             fprintf(stderr, "Error sending packet: %s\n", pcap_geterr(handle));
         } else {
             printf("Packet %d sent\n", i + 1);
-            printf("Packet\n %s", packet);
         }
         usleep(500000);  // 100ms 대기
     }
